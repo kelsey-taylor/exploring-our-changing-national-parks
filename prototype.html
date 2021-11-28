@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Glacier National Park - Prototype</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Lato", serif;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      .map-overlay {
+        font: 12px/20px "Lato", sans-serif;
+        color: #7b8991;
+        position: relative;
+        background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        width: 20%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .buttons {
+        font: 12px/20px "Lato", sans-serif;
+        position: relative;
+        background-color: #ffffff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+        width: 20%;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .buttons h2 {
+        text-align: center;
+      }
+
+      .buttons h3 {
+        font: 12px/16px "Lato", sans-serif;
+        color: #7b8991;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+        line-height: 18px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .map-overlay h2 {
+        line-height: 24px;
+        display: block;
+        margin: 0 0 10px;
+        font: 16px/20px "Lato", sans-serif;
+        color: #7b8991;
+        font-weight: bold;
+        letter-spacing: 1.5px;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .map-overlay p {
+        line-height: 24px;
+        display: block;
+        margin: 0 0 10px;
+        font: 14px/22px "Lato", sans-serif;
+        text-align: center;
+        letter-spacing: 0.2px;
+      }
+
+      .map-overlay input {
+        background-color: transparent;
+        display: inline-block;
+        width: 90%;
+        position: relative;
+        margin-left: 5%;
+        cursor: ew-resize;
+      }
+      .session {
+        width: 100%;
+        align: center;
+        margin-bottom: 5px;
+      }
+      .label {
+        width: 18.7%;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+      }
+
+      .fly {
+        display: block;
+        position: relative;
+        margin: 10px auto;
+        margin-bottom: 5px;
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        font: 14px/22px "Lato", sans-serif;
+        text-align: center;
+        letter-spacing: 1px;
+        color: #fff;
+        background: #2c5e79;
+        cursor: pointer;
+      }
+
+      #menu {
+        background: #a2b2bd;
+        position: absolute;
+        z-index: 1;
+        bottom: 70px;
+        left: 10px;
+        border-radius: 3px;
+        width: 120px;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        font: 14px/22px "Lato", sans-serif;
+      }
+
+      #menu a {
+        font-size: 13px;
+        background: #a2b2bd;
+        color: #f1f4f6;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        text-align: center;
+      }
+
+      #menu a:last-child {
+        border: none;
+      }
+
+      #menu a:hover {
+        background-color: #2c5e79;
+        color: #ffffff;
+      }
+
+      #menu a.active {
+        background-color: #06405f;
+        color: #ffffff;
+      }
+
+      #menu a.active:hover {
+        background: #3074a4;
+      }
+      .dropbtn {
+        background-color: #4caf50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropbtn:hover,
+      .dropbtn:focus {
+        background-color: #3e8e41;
+      }
+
+      #myInput {
+        box-sizing: border-box;
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font: 14px/22px "Lato", sans-serif;
+        font-style: italic;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+
+      #myInput:focus {
+        outline: 3px solid #ddd;
+      }
+
+      .dropdown {
+        position: relative;
+        margin: auto;
+        text-align: center;
+        width: 100%;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        text-align: left;
+        background-color: #f6f6f6;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown a:hover {
+        background-color: #ddd;
+      }
+
+      .show {
+        display: inline-block;
+      }
+    </style>
+
+    <div id="map"></div>
+
+    <div class="map-overlay top">
+      <h2>Conditions in <label id="year">1840</label></h2>
+      <p>
+        Use the time slider to see changing climate conditions since 1840
+      </p>
+      <input
+        id="slider"
+        type="range"
+        min="1840"
+        max="2015"
+        step="5"
+        value="1840"
+      />
+      <div class="session">
+        <div class="row labels">
+          <div class="label">1840</div>
+          <div class="label"></div>
+          <div class="label"></div>
+          <div class="label"></div>
+          <div class="label">2015</div>
+        </div>
+      </div>
+    </div>
+
+    <nav id="menu"></nav>
+
+    <div class="buttons">
+      <div class="dropdown">
+        <button onclick="myFunction()" class="fly">FIND YOUR PARK</button>
+        <div id="myDropdown" class="dropdown-content">
+          <input
+            type="text"
+            placeholder="Type park name..."
+            id="myInput"
+            onkeyup="filterFunction()"
+          />
+          <a id="acadia">Acadia</a>
+          <a id="arches">Arches</a>
+          <a id="biscayne">
+            Biscayne
+          </a>
+          <a id="bryce-canyon">
+            Bryce Canyon
+          </a>
+          <a id="canyonlands">
+            Canyonlands
+          </a>
+          <a id="capitol-reef">
+            Capitol Reef
+          </a>
+          <a id="everglades">
+            Everglades
+          </a>
+          <a id="glacier">Glacier</a>
+          <a id="grand-teton">
+            Grand Teton
+          </a>
+          <a id="joshua-tree">Joshua Tree</a>
+          <a id="mount-rainier">
+            Mount Rainier
+          </a>
+          <a id="olympic">
+            Olympic
+          </a>
+          <a id="sequoia-kings-canyon">
+            Sequoia & Kings Canyon
+          </a>
+          <a id="shenandoah">Shenandoah</a>
+          <a id="yellowstone">
+            Yellowstone
+          </a>
+          <a id="yosemite">
+            Yosemite
+          </a>
+          <a id="zion">Zion</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      mapboxgl.accessToken =
+        "pk.eyJ1Ijoia2Vsc2V5ZXRheWxvciIsImEiOiJjanhzYWFwN2QwaHBsM2huNW0yZmplcmJlIn0.37SBNBO6Nldswe4RchbmtA";
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/kelseyetaylor/ckavsy1i92c9d1ilghppyogn4",
+        center: [-105.58, 36.26],
+        minZoom: 2,
+        maxZoom: 15,
+        zoom: 3.26
+      });
+
+      var date = [];
+      for (var i = 1840; i <= 2019; i++) {
+        date.push(i);
+      }
+
+      function filterBy(date) {
+        var current = ["==", "YEAR", date];
+        map.setFilter("Average annual temperature", current);
+        map.setFilter("Annual precipitation", current);
+        map.setFilter("Glacier extents", current);
+        map.setFilter("Wildfires", current);
+        map.setFilter("Hurricane paths", current);
+
+        document.getElementById("year").innerText = current[2];
+      }
+
+      map.on("load", function() {
+        map.addSource("data", {
+          type: "vector",
+          url: "mapbox://kelseyetaylor.23cqmspz"
+        });
+        map.addSource("temperature", {
+          type: "vector",
+          url: "mapbox://kelseyetaylor.9koxhvf0"
+        });
+        map.addSource("precipitation", {
+          type: "vector",
+          url: "mapbox://kelseyetaylor.dj4azp31"
+        });
+        map.addLayer({
+          id: "Average annual temperature",
+          type: "fill",
+          source: "temperature",
+          "source-layer": "temperature",
+          paint: {
+            "fill-color": [
+              "interpolate",
+              ["linear"],
+              ["get", "TEMPf"],
+              20,
+              "#260026",
+              30,
+              "#440154",
+              40,
+              "#3a528b",
+              50,
+              "#20908d",
+              60,
+              "#5dc962",
+              70,
+              "#fde725"
+            ],
+            "fill-opacity": 0.3,
+            "fill-outline-color": "hsla(250, 73%, 50%, 0)"
+          }
+        });
+        map.addLayer({
+          id: "Annual precipitation",
+          type: "fill",
+          source: "precipitation",
+          "source-layer": "precipitation",
+          paint: {
+            "fill-color": [
+              "interpolate",
+              ["linear"],
+              ["get", "TOTAL"],
+              750,
+              "hsl(175, 63%, 51%)",
+              1500,
+              "hsl(207, 73%, 50%)",
+              2500,
+              "hsl(220, 73%, 50%)",
+              4000,
+              "hsl(269, 73%, 50%)",
+              6000,
+              "hsl(250, 73%, 50%)"
+            ],
+            "fill-opacity": 0.3,
+            "fill-outline-color": "hsla(250, 73%, 50%, 0)"
+          }
+        });
+        map.addLayer({
+          id: "Glacier extents",
+          type: "fill",
+          source: "data",
+          "source-layer": "glaciers",
+          paint: {
+            "fill-color": "#457A96",
+            "fill-opacity": 0.5
+          }
+        });
+        map.addLayer({
+          id: "Wildfires",
+          type: "fill",
+          source: "data",
+          "source-layer": "fires",
+          paint: {
+            "fill-color": "#B45828",
+            "fill-opacity": 0.4
+          }
+        });
+        map.addLayer({
+          id: "Hurricane paths",
+          type: "line",
+          source: "data",
+          "source-layer": "hurricanespaths",
+          paint: {
+            "line-color": "#304055",
+            "line-width": 0.3
+          }
+        });
+
+        var toggleableLayerIds = [
+          "Glacier extents",
+          "Average annual temperature",
+          "Annual precipitation",
+          "Wildfires",
+          "Hurricane paths"
+        ];
+
+        // set up the corresponding toggle button for each layer
+        for (var i = 0; i < toggleableLayerIds.length; i++) {
+          var id = toggleableLayerIds[i];
+
+          var link = document.createElement("a");
+          link.href = "#";
+          link.className = "active";
+          link.textContent = id;
+
+          link.onclick = function(e) {
+            var clickedLayer = this.textContent;
+            e.preventDefault();
+            e.stopPropagation();
+
+            var visibility = map.getLayoutProperty(clickedLayer, "visibility");
+
+            // toggle layer visibility by changing the layout object's visibility property
+            if (visibility === "visible") {
+              map.setLayoutProperty(clickedLayer, "visibility", "none");
+              this.className = "";
+            } else {
+              this.className = "active";
+              map.setLayoutProperty(clickedLayer, "visibility", "visible");
+            }
+          };
+
+          var layers = document.getElementById("menu");
+          layers.appendChild(link);
+        }
+
+        filterBy(1840);
+
+        document
+          .getElementById("slider")
+          .addEventListener("input", function(e) {
+            var current = parseInt(e.target.value);
+            filterBy(current);
+          });
+
+        var ACAD = [[-68.5711, 44.2179], 8.63, 0.7];
+        var ARCH = [[-109.5801, 38.7255], 10.08, 0.7];
+        var BISC = [[-80.2149, 25.431], 9.11, 0.7];
+        var BRCA = [[-112.197, 37.5848], 9.84, 0.7];
+        var CANY = [[-109.8547, 38.2419], 9.18, 0.7];
+        var CARE = [[-111.118, 38.044], 8.23, 0.7];
+        var EVER = [[-81.137, 25.385], 8.29, 0.7];
+        var GLAC = [[-114.109, 48.6317], 8.5, 0.7];
+        var GRTE = [[-110.836, 43.815], 8.8, 0.7];
+        var JOTR = [[-115.767, 33.89], 7.95, 0.7];
+        var MORE = [[-121.7637, 46.871], 8.67, 0.7];
+        var OLYM = [[-124.094, 47.827], 8, 0.7];
+        var SEKI = [[-118.738, 36.743], 8.28, 0.7];
+        var SHEN = [[-78.769, 38.485], 8.44, 0.7];
+        var YELL = [[-110.423, 44.591], 7.94, 0.7];
+        var YOSE = [[-119.7632, 37.8141], 8.63, 0.7];
+        var ZION = [[-113.1188, 37.2947], 9.65, 0.7];
+
+        document.getElementById("acadia").addEventListener("click", function() {
+          map.flyTo({
+            center: ACAD[0],
+            zoom: ACAD[1],
+            speed: ACAD[2]
+          });
+        });
+        document.getElementById("arches").addEventListener("click", function() {
+          map.flyTo({
+            center: ARCH[0],
+            zoom: ARCH[1],
+            speed: ARCH[2]
+          });
+        });
+        document
+          .getElementById("biscayne")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: BISC[0],
+              zoom: BISC[1],
+              speed: BISC[2]
+            });
+          });
+        document
+          .getElementById("bryce-canyon")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: BRCA[0],
+              zoom: BRCA[1],
+              speed: BRCA[2]
+            });
+          });
+        document
+          .getElementById("canyonlands")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: CANY[0],
+              zoom: CANY[1],
+              speed: CANY[2]
+            });
+          });
+        document
+          .getElementById("capitol-reef")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: CARE[0],
+              zoom: CARE[1],
+              speed: CARE[2]
+            });
+          });
+        document
+          .getElementById("everglades")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: EVER[0],
+              zoom: EVER[1],
+              speed: EVER[2]
+            });
+          });
+        document
+          .getElementById("glacier")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: GLAC[0],
+              zoom: GLAC[1],
+              speed: GLAC[2]
+            });
+          });
+        document
+          .getElementById("grand-teton")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: GRTE[0],
+              zoom: GRTE[1],
+              speed: GRTE[2]
+            });
+          });
+        document
+          .getElementById("joshua-tree")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: JOTR[0],
+              zoom: JOTR[1],
+              speed: JOTR[2]
+            });
+          });
+        document
+          .getElementById("mount-rainier")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: MORE[0],
+              zoom: MORE[1],
+              speed: MORE[2]
+            });
+          });
+        document
+          .getElementById("olympic")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: OLYM[0],
+              zoom: OLYM[1],
+              speed: OLYM[2]
+            });
+          });
+        document
+          .getElementById("sequoia-kings-canyon")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: SEKI[0],
+              zoom: SEKI[1],
+              speed: SEKI[2]
+            });
+          });
+        document
+          .getElementById("shenandoah")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: SHEN[0],
+              zoom: SHEN[1],
+              speed: SHEN[2]
+            });
+          });
+        document
+          .getElementById("yellowstone")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: YELL[0],
+              zoom: YELL[1],
+              speed: YELL[2]
+            });
+          });
+        document
+          .getElementById("yosemite")
+          .addEventListener("click", function() {
+            map.flyTo({
+              center: YOSE[0],
+              zoom: YOSE[1],
+              speed: YOSE[2]
+            });
+          });
+        document.getElementById("zion").addEventListener("click", function() {
+          map.flyTo({
+            center: ZION[0],
+            zoom: ZION[1],
+            speed: ZION[2]
+          });
+        });
+      });
+
+      /* When the user clicks on the button,
+      toggle between hiding and showing the dropdown content */
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+          txtValue = a[i].textContent || a[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
