@@ -47,3 +47,24 @@
     - last published: 05/11/20
 
 ## Story outline
+
+- increasing wildfires since 1840
+    - [x] fires before 1950
+        - [x] Glacier has some
+        - [x] few in Olympic, Yellowstone, Yosemite
+    - [x] fires between 1950 and 2000
+        - [x] many in Yellowstone and Everglades
+    - [x] fires since 2000
+        - [x] many in Glacier, Yosemite, Sequoia/KC, UT, Everglades
+- receding glaciers since 1850
+    - [x] Glacier NP
+    - Mount Rainier - nothing sufficiently noticeable
+    - [x] Olympic
+- increased number and intensity of hurricanes
+    - Everglades - variation of the viewer to break down this data
+    - Acadia?
+- increased temperatures and precipitation
+    - Yosemite
+    - Utah
+    - Olympic
+    - Acadia?
