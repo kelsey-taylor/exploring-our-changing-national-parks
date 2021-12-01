@@ -68,3 +68,15 @@
     - Utah
     - Olympic
     - Acadia?
+- to do:
+    - add sources
+    - add photos?
+    - add subtle background?
+    - try to use the National Park font
+    - publish to Github
+
+
+## Scrollytelling details
+
+- OnChapterEnter: both directions
+- OnChapterExit: also both directions
