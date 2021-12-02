@@ -70,10 +70,11 @@
     - Acadia?
 - to do:
     - [x] link to interactive map
-    - add sources
-    - fix title chapter
+    - [x] add sources
+    - [x] NGS attribution
+    - [x] fix title chapter
     - add photos?
-    - add subtle background?
+    - [x] add subtle background?
     - try to use the National Park font
     - [x] publish to Github
 

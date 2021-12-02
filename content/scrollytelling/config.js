@@ -7,7 +7,7 @@ var config = {
   theme: "dark",
   title: "Exploring Our Changing National Parks",
   byline: "Kelsey Taylor",
-  footer: "data sources",
+  footer: "Glacier data available from U.S. Geological Survey (USGS) and GLIMS database. Historic wildfire data available from the National Park Service (NPS) and USGS. Historical tropical cyclone data available via HURDAT2 from the National Hurricane Center (NHC) and National Oceanic and Atmospheric Administration (NOAA). Park boundary and name data available from NPS.<br><br> Funding for this project provided by The National Geographic Society",
   chapters: [
     {
       id: "fires-title",
