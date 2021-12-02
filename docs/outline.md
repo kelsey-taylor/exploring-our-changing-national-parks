@@ -73,10 +73,12 @@
     - [x] add sources
     - [x] NGS attribution
     - [x] fix title chapter
-    - add photos?
     - [x] add subtle background?
-    - try to use the National Park font
+    - [x] try to use the National Park font
     - [x] publish to Github
+    - [x] add National Park font to scrollytelling story
+    - [ ] add photos to story
+    - [x] add source note to story about font
 
 
 ## Scrollytelling details
