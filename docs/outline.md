@@ -69,6 +69,7 @@
     - Olympic
     - Acadia?
 - to do:
+    - [x] link to interactive map
     - add sources
     - fix title chapter
     - add photos?

@@ -1506,7 +1506,7 @@ var config = {
     {
       id: "parks-all",
       title: "Exploring Our Changing National Parks",
-      description: "The best way to make a difference and help stop the impacts of climate change now is to reduce your carbon footprint. It takes contributions from everyone to tackle a global problem like the climate crisis.<br><br> Explore each park and dataset, plus temperature and precipitation data since 1895 for all project parks <a href='../interactive/prototype.html'>here</a>.",
+      description: "The best way to make a difference and help stop the impacts of climate change now is to reduce your carbon footprint. It takes contributions from everyone to tackle a global problem like the climate crisis.<br><br> Explore each park and dataset, plus temperature and precipitation data since 1895 for all project parks <a href='./content/interactive/prototype.html'>here</a>.",
       location: {
         center: [-96.62, 37.98],
         zoom: 3.24,
