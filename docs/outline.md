@@ -70,10 +70,11 @@
     - Acadia?
 - to do:
     - add sources
+    - fix title chapter
     - add photos?
     - add subtle background?
     - try to use the National Park font
-    - publish to Github
+    - [x] publish to Github
 
 
 ## Scrollytelling details
