@@ -10,9 +10,36 @@ var config = {
   footer: "Glacier data available from U.S. Geological Survey (USGS) and GLIMS database. Historic wildfire data available from the National Park Service (NPS) and USGS. Historical tropical cyclone data available via HURDAT2 from the National Hurricane Center (NHC) and National Oceanic and Atmospheric Administration (NOAA). Park boundary and name data available from NPS. The <a href='https://nationalparktypeface.com/'>National Park Typeface</a> is available for free use from the Design Outside Studio.<br><br> Funding for this project provided by The National Geographic Society",
   chapters: [
     {
+      id: "summary",
+      description: "Follow impacts of our changing climate in U.S. National Parks across time, space, and landscape. Wildfires, receding glaciers, hurricanes, rainfall, and temperature changes from 1850 to the present illustrate the rapid, intense changes in our climate over the past 150 years.",
+      location: {
+        center: [-114.0944, 48.6343],
+        zoom: 8.47,
+        pitch: 0.0,
+        bearing: 0.0,
+        speed: 0.7
+      },
+      onChapterEnter: [
+        {
+          layer: "fires-before-1950",
+          opacity: 0
+        },
+        {
+          layer: "fires-1950-2000",
+          opacity: 0
+        },
+        {
+          layer: "fires-since-2000",
+          opacity: 0
+        }
+      ],
+      onChapterExit: []
+    },
+    {
       id: "fires-title",
       title: "Exploring Wildfires in Our Changing National Parks",
       description: "Wildfires in the U.S. have increased dramatically in size and frequency since data was first tracked in the mid-19th century. In U.S. national parks, they are one very visible impact of our changing climate.",
+      image: "./content/scrollytelling/img/glac-12.jpeg",
       location: {
         center: [-114.0944, 48.6343],
         zoom: 8.47,
@@ -68,18 +95,17 @@ var config = {
         {
           layer: "fires-before-1950-labels",
           opacity: 1.0
-        }
-      ],
-      onChapterExit: [
+        },
         {
-          layer: "fires-before-1950",
+          layer: "fires-1950-2000",
           opacity: 0
         },
         {
-          layer: "fires-before-1950-labels",
+          layer: "fires-since-2000",
           opacity: 0
         }
-      ]
+      ],
+      onChapterExit: []
     },
     {
       id: "yellowstone-before-1950",
@@ -149,6 +175,7 @@ var config = {
       id: "yellowstone-since-2000",
       title: "Yellowstone & Grand Teton National Parks:\n 2000 - 2018",
       description: "One result of such widespread burning was that there was not much left to burn in the subsequent years, making the 21st century relatively quiet in Yellowstone - so far.",
+      image: "./content/scrollytelling/img/grte-03.jpeg",
       location: {
         center: [-110.847, 44.34],
         zoom: 7.62,
@@ -181,6 +208,7 @@ var config = {
       id: "yosemite-seki-since-2000",
       title: "Yosemite, Sequoia, & Kings Canyon National Parks:\n 2000 - 2018",
       description: "Three national parks in Central California have had more wildfire activity in the last 20 years, with hard-to-contain fires becoming routine every year.",
+      image: "./content/scrollytelling/img/yose-02.jpeg",
       location: {
         center: [-119.314, 37.209],
         zoom: 7.48,
@@ -261,6 +289,7 @@ var config = {
       id: "glacier-since-2000",
       title: "Glacier National Park:\n 2000 - 2018",
       description: "As Glacier has become a more popular destination and wildfires have grown in size and frequency, the National Park Service at Glacier has learned how to manage fire instead of fighting it.",
+      image: "./content/scrollytelling/img/glac-11.jpeg",
       location: {
         center: [-114.0944, 48.6343],
         zoom: 8.47,
@@ -352,21 +381,45 @@ var config = {
           opacity: 1.0
         },
         {
-          layer: "glacier-labels",
-          opacity: 1.0
-        }
-      ],
-      onChapterExit: [
+          layer: "1998-glaciers",
+          opacity: 0
+        },
         {
-          layer: "1850-glaciers",
+          layer: "2005-glaciers",
+          opacity: 0
+        },
+        {
+          layer: "2015-glaciers",
           opacity: 0
         },
         {
           layer: "glacier-labels",
+          opacity: 1.0
+        },
+        {
+          layer: "1850-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "1966-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "1998-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "2005-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "2015-glaciers-gone",
           opacity: 0
         }
-      ]
+      ],
+      onChapterExit: []
     },
+    // done
     {
       id: "blackfoot-1850-1966",
       title: "1966",
@@ -384,21 +437,41 @@ var config = {
           opacity: 0.5
         },
         {
+          layer: "1966-glaciers-gone",
+          opacity: 0
+        },
+        {
           layer: "glacier-labels",
           opacity: 1.0
         },
         {
           layer: "1966-glaciers",
           opacity: 1.0
+        },
+        {
+          layer: "1850-glaciers",
+          opacity: 0
         }
       ],
       onChapterExit: [
         {
           layer: "1850-glaciers-gone",
+          opacity: 0.5
+        },
+        {
+          layer: "1966-glaciers-gone",
           opacity: 0
         },
         {
+          layer: "glacier-labels",
+          opacity: 1.0
+        },
+        {
           layer: "1966-glaciers",
+          opacity: 1.0
+        },
+        {
+          layer: "1850-glaciers",
           opacity: 0
         }
       ]
@@ -432,20 +505,7 @@ var config = {
           opacity: 1.0
         }
       ],
-      onChapterExit: [
-        {
-          layer: "1850-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "1966-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "1998-glaciers",
-          opacity: 0
-        }
-      ]
+      onChapterExit: []
     },
     {
       id: "blackfoot-1998-2005",
@@ -476,28 +536,15 @@ var config = {
           opacity: 1.0
         },
         {
+          layer: "1998-glaciers",
+          opacity: 0
+        },
+        {
           layer: "2005-glaciers",
           opacity: 1.0
         }
       ],
-      onChapterExit: [
-        {
-          layer: "1850-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "1966-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "1998-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "2005-glaciers",
-          opacity: 0
-        }
-      ]
+      onChapterExit: []
     },
     {
       id: "blackfoot-2005-2015",
@@ -532,7 +579,20 @@ var config = {
           opacity: 1
         }
       ],
-      onChapterExit: [
+      onChapterExit: []
+    },
+    {
+      id: "agassiz-1850",
+      title: "1850",
+      description: "Glacial extent estimate in 1850 for the Agassiz Glacier complex and surrounding glaciers.",
+      location: {
+        center: [-114.1083, 48.9259],
+        zoom: 11,
+        pitch: 0,
+        bearing: 0,
+        speed: 0.7
+      },
+      onChapterEnter: [
         {
           layer: "1850-glaciers-gone",
           opacity: 0
@@ -552,21 +612,7 @@ var config = {
         {
           layer: "2015-glaciers",
           opacity: 0
-        }
-      ]
-    },
-    {
-      id: "agassiz-1850",
-      title: "1850",
-      description: "Glacial extent estimate in 1850 for the Agassiz Glacier complex and surrounding glaciers.",
-      location: {
-        center: [-114.1083, 48.9259],
-        zoom: 11,
-        pitch: 0,
-        bearing: 0,
-        speed: 0.7
-      },
-      onChapterEnter: [
+        },
         {
           layer: "1850-glaciers",
           opacity: 1.0
@@ -614,10 +660,6 @@ var config = {
       ],
       onChapterExit: [
         {
-          layer: "1850-glaciers-gone",
-          opacity: 0
-        },
-        {
           layer: "1966-glaciers",
           opacity: 0
         }
@@ -625,7 +667,7 @@ var config = {
     },
     {
       id: "agassiz-1850-1966",
-      title: "1966",
+      title: "1998",
       description: "Glacial extent in 1998 for the Agassiz Glacier complex and surrounding glaciers, with the estimated extent in 1850 and 1966 visible.",
       location: {
         center: [-114.1083, 48.9259],
@@ -1163,12 +1205,13 @@ var config = {
       id: "grinnell-2005-2015",
       title: "2015",
       description: "Glacial extent in 2015 for the Grinnell Glacier complex and surrounding glaciers, with the estimated extent in 1850, 1966, 1998, and 2005 visible.",
-        location: {
-          center: [-113.7023, 48.7455],
-          zoom: 11,
-          pitch: 0,
-          bearing: 0,
-          speed: 0.7
+      image: "./content/scrollytelling/img/glac-07.jpeg",
+      location: {
+        center: [-113.7023, 48.7455],
+        zoom: 11,
+        pitch: 0,
+        bearing: 0,
+        speed: 0.7
       },
       onChapterEnter: [
         {
@@ -1304,19 +1347,11 @@ var config = {
           opacity: 1
         },
         {
-          layer: "1998-glaciers-gone",
-          opacity: 0
-        },
-        {
           layer: "glacier-labels",
           opacity: 1
         }
       ],
       onChapterExit: [
-        {
-          layer: "1998-glaciers",
-          opacity: 0
-        },
         {
           layer: "glacier-labels",
           opacity: 0
@@ -1336,6 +1371,10 @@ var config = {
       },
       onChapterEnter: [
         {
+          layer: "1998-glaciers",
+          opacity: 0
+        },
+        {
           layer: "1998-glaciers-gone",
           opacity: 0.5
         },
@@ -1351,6 +1390,10 @@ var config = {
       onChapterExit: [
         {
           layer: "2015-glaciers",
+          opacity: 0
+        },
+        {
+          layer: "1998-glaciers",
           opacity: 0
         },
         {
@@ -1459,6 +1502,7 @@ var config = {
       id: "east-coast-hurricanes-1950-2000",
       title: "Tropical cyclones: 1950 - 2000",
       description: "Adding to the worrying trend of more intense storms later in the 20th century, storm paths became more erratic, veering further west and north than in previous years.",
+      image: "./content/scrollytelling/img/ever-01.jpeg",
       location: {
         center: [-81.61, 27.49],
         zoom: 4.13,
@@ -1506,7 +1550,7 @@ var config = {
     {
       id: "parks-all",
       title: "Exploring Our Changing National Parks",
-      description: "The best way to make a difference and help stop the impacts of climate change now is to reduce your carbon footprint. It takes contributions from everyone to tackle a global problem like the climate crisis.<br><br> Explore each park and dataset, plus temperature and precipitation data since 1895 for all project parks <a href='/exploring-our-changing-national-parks/content/interactive/prototype.html'>here</a>.",
+      description: "The best way to make a difference and help stop the impacts of climate change now is to reduce your carbon footprint. It takes contributions from everyone to tackle a global problem like the climate crisis.<br><br> Explore each park and dataset, plus temperature and precipitation data since 1895 for all project parks <a href='../interactive/prototype.html'>here</a>.",
       location: {
         center: [-96.62, 37.98],
         zoom: 3.24,

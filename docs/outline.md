@@ -77,7 +77,7 @@
     - [x] try to use the National Park font
     - [x] publish to Github
     - [x] add National Park font to scrollytelling story
-    - [ ] add photos to story
+    - [x] add photos to story
     - [x] add source note to story about font
 
 
