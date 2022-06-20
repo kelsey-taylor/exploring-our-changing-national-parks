@@ -11,7 +11,7 @@ var config = {
   chapters: [
     {
       id: "summary",
-      description: "Follow impacts of our changing climate in U.S. National Parks across time, space, and landscape. Wildfires, receding glaciers, hurricanes, rainfall, and temperature changes from 1850 to the present illustrate the rapid, intense changes in our climate over the past 150 years.",
+      description: "Follow impacts of our changing climate in U.S. National Parks across time, space, and landscape. Wildfires, receding glaciers, hurricanes, rainfall, and temperature changes from 1850 to the present illustrate the rapid, intense changes in our climate over the past 150 years. Keep scrolling down to follow the story.",
       location: {
         center: [-114.0944, 48.6343],
         zoom: 8.47,
@@ -19,20 +19,7 @@ var config = {
         bearing: 0.0,
         speed: 0.7
       },
-      onChapterEnter: [
-        {
-          layer: "fires-before-1950",
-          opacity: 0
-        },
-        {
-          layer: "fires-1950-2000",
-          opacity: 0
-        },
-        {
-          layer: "fires-since-2000",
-          opacity: 0
-        }
-      ],
+      onChapterEnter: [],
       onChapterExit: []
     },
     {
@@ -91,21 +78,14 @@ var config = {
         {
           layer: "fires-before-1950",
           opacity: 0.5
-        },
-        {
-          layer: "fires-before-1950-labels",
-          opacity: 1.0
-        },
-        {
-          layer: "fires-1950-2000",
-          opacity: 0
-        },
-        {
-          layer: "fires-since-2000",
-          opacity: 0
         }
       ],
-      onChapterExit: []
+      onChapterExit: [
+        {
+          layer: "fires-before-1950",
+          opacity: 0
+        }
+      ]
     },
     {
       id: "yellowstone-before-1950",
@@ -122,19 +102,11 @@ var config = {
         {
           layer: "fires-before-1950",
           opacity: 0.5
-        },
-        {
-          layer: "fires-before-1950-labels",
-          opacity: 1.0
         }
       ],
       onChapterExit: [
         {
           layer: "fires-before-1950",
-          opacity: 0
-        },
-        {
-          layer: "fires-before-1950-labels",
           opacity: 0
         }
       ]
@@ -154,19 +126,11 @@ var config = {
         {
           layer: "fires-1950-2000",
           opacity: 0.5
-        },
-        {
-          layer: "fires-1950-2000-labels",
-          opacity: 1.0
         }
       ],
       onChapterExit: [
         {
           layer: "fires-1950-2000",
-          opacity: 0
-        },
-        {
-          layer: "fires-1950-2000-labels",
           opacity: 0
         }
       ]
@@ -187,19 +151,11 @@ var config = {
         {
           layer: "fires-since-2000",
           opacity: 0.5
-        },
-        {
-          layer: "fires-since-2000-labels",
-          opacity: 1.0
         }
       ],
       onChapterExit: [
         {
           layer: "fires-since-2000",
-          opacity: 0
-        },
-        {
-          layer: "fires-since-2000-labels",
           opacity: 0
         }
       ]
@@ -220,19 +176,11 @@ var config = {
         {
           layer: "fires-since-2000",
           opacity: 0.5
-        },
-        {
-          layer: "fires-since-2000-labels",
-          opacity: 1.0
         }
       ],
       onChapterExit: [
         {
           layer: "fires-since-2000",
-          opacity: 0
-        },
-        {
-          layer: "fires-since-2000-labels",
           opacity: 0
         }
       ]
@@ -254,16 +202,8 @@ var config = {
           opacity: 0.5
         },
         {
-          layer: "fires-since-2000-labels",
-          opacity: 1.0
-        },
-        {
           layer: "fires-1950-2000",
           opacity: 0.5
-        },
-        {
-          layer: "fires-1950-2000-labels",
-          opacity: 1.0
         }
       ],
       onChapterExit: [
@@ -272,15 +212,7 @@ var config = {
           opacity: 0
         },
         {
-          layer: "fires-since-2000-labels",
-          opacity: 0
-        },
-        {
           layer: "fires-1950-2000",
-          opacity: 0
-        },
-        {
-          layer: "fires-1950-2000-labels",
           opacity: 0
         }
       ]
@@ -301,19 +233,11 @@ var config = {
         {
           layer: "fires-since-2000",
           opacity: 0.5
-        },
-        {
-          layer: "fires-since-2000-labels",
-          opacity: 1.0
         }
       ],
       onChapterExit: [
         {
           layer: "fires-since-2000",
-          opacity: 0
-        },
-        {
-          layer: "fires-since-2000-labels",
           opacity: 0
         }
       ]
@@ -381,43 +305,20 @@ var config = {
           opacity: 1.0
         },
         {
-          layer: "1998-glaciers",
-          opacity: 0
-        },
+          layer: "glacier-labels",
+          opacity: 1.0
+        }
+      ],
+      onChapterExit: [
         {
-          layer: "2005-glaciers",
-          opacity: 0
-        },
-        {
-          layer: "2015-glaciers",
+          layer: "1850-glaciers",
           opacity: 0
         },
         {
           layer: "glacier-labels",
-          opacity: 1.0
-        },
-        {
-          layer: "1850-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "1966-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "1998-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "2005-glaciers-gone",
-          opacity: 0
-        },
-        {
-          layer: "2015-glaciers-gone",
           opacity: 0
         }
-      ],
-      onChapterExit: []
+      ]
     },
     // done
     {
@@ -437,41 +338,25 @@ var config = {
           opacity: 0.5
         },
         {
-          layer: "1966-glaciers-gone",
-          opacity: 0
-        },
-        {
           layer: "glacier-labels",
           opacity: 1.0
         },
         {
           layer: "1966-glaciers",
           opacity: 1.0
-        },
-        {
-          layer: "1850-glaciers",
-          opacity: 0
         }
       ],
       onChapterExit: [
         {
           layer: "1850-glaciers-gone",
-          opacity: 0.5
-        },
-        {
-          layer: "1966-glaciers-gone",
           opacity: 0
         },
         {
           layer: "glacier-labels",
-          opacity: 1.0
+          opacity: 0
         },
         {
           layer: "1966-glaciers",
-          opacity: 1.0
-        },
-        {
-          layer: "1850-glaciers",
           opacity: 0
         }
       ]
@@ -505,7 +390,24 @@ var config = {
           opacity: 1.0
         }
       ],
-      onChapterExit: []
+      onChapterExit: [
+        {
+          layer: "1850-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "1966-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
+          layer: "1998-glaciers",
+          opacity: 0
+        }
+      ]
     },
     {
       id: "blackfoot-1998-2005",
@@ -536,15 +438,32 @@ var config = {
           opacity: 1.0
         },
         {
-          layer: "1998-glaciers",
-          opacity: 0
-        },
-        {
           layer: "2005-glaciers",
           opacity: 1.0
         }
       ],
-      onChapterExit: []
+      onChapterExit: [
+        {
+          layer: "1850-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "1966-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "1998-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
+          layer: "2005-glaciers",
+          opacity: 0
+        }
+      ]
     },
     {
       id: "blackfoot-2005-2015",
@@ -575,24 +494,15 @@ var config = {
           opacity: 0.5
         },
         {
+          layer: "glacier-labels",
+          opacity: 1.0
+        },
+        {
           layer: "2015-glaciers",
           opacity: 1
         }
       ],
-      onChapterExit: []
-    },
-    {
-      id: "agassiz-1850",
-      title: "1850",
-      description: "Glacial extent estimate in 1850 for the Agassiz Glacier complex and surrounding glaciers.",
-      location: {
-        center: [-114.1083, 48.9259],
-        zoom: 11,
-        pitch: 0,
-        bearing: 0,
-        speed: 0.7
-      },
-      onChapterEnter: [
+      onChapterExit: [
         {
           layer: "1850-glaciers-gone",
           opacity: 0
@@ -610,9 +520,27 @@ var config = {
           opacity: 0
         },
         {
-          layer: "2015-glaciers",
+          layer: "glacier-labels",
           opacity: 0
         },
+        {
+          layer: "2015-glaciers",
+          opacity: 0
+        }
+      ]
+    },
+    {
+      id: "agassiz-1850",
+      title: "1850",
+      description: "Glacial extent estimate in 1850 for the Agassiz Glacier complex and surrounding glaciers.",
+      location: {
+        center: [-114.1083, 48.9259],
+        zoom: 11,
+        pitch: 0,
+        bearing: 0,
+        speed: 0.7
+      },
+      onChapterEnter: [
         {
           layer: "1850-glaciers",
           opacity: 1.0
@@ -660,6 +588,14 @@ var config = {
       ],
       onChapterExit: [
         {
+          layer: "1850-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
           layer: "1966-glaciers",
           opacity: 0
         }
@@ -701,6 +637,10 @@ var config = {
         },
         {
           layer: "1966-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "glacier-labels",
           opacity: 0
         },
         {
@@ -756,6 +696,10 @@ var config = {
           opacity: 0
         },
         {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
           layer: "2005-glaciers",
           opacity: 0
         }
@@ -790,6 +734,10 @@ var config = {
           opacity: 0.5
         },
         {
+          layer: "glacier-labels",
+          opacity: 1
+        },
+        {
           layer: "2015-glaciers",
           opacity: 1
         }
@@ -812,231 +760,15 @@ var config = {
           opacity: 0
         },
         {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
           layer: "2015-glaciers",
           opacity: 0
         }
       ]
     },
-    // {
-    //   id: "oldsun-1850",
-    //   title: "Old Sun Glacier area: 1850",
-    //   description: "lorem ipsum",
-    //   location: {
-    //     center: [-113.8116, 48.8921],
-    //     zoom: 11,
-    //     pitch: 0,
-    //     bearing: 0,
-    //     speed: 0.7
-    //   },
-    //   onChapterEnter: [
-    //     {
-    //       layer: "1850-glaciers",
-    //       opacity: 1.0
-    //     },
-    //     {
-    //       layer: "glacier-labels",
-    //       opacity: 1.0
-    //     }
-    //   ],
-    //   onChapterExit: [
-    //     {
-    //       layer: "1850-glaciers",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "glacier-labels",
-    //       opacity: 0
-    //     }
-    //   ]
-    // },
-    // {
-    //   id: "oldsun-1850-1966",
-    //   title: "Old Sun Glacier area: 1850 - 1966",
-    //   description: "lorem ipsum",
-    //   location: {
-    //     center: [-113.8116, 48.8921],
-    //     zoom: 11,
-    //     pitch: 0,
-    //     bearing: 0,
-    //     speed: 0.7
-    //   },
-    //   onChapterEnter: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "glacier-labels",
-    //       opacity: 1.0
-    //     },
-    //     {
-    //       layer: "1966-glaciers",
-    //       opacity: 1.0
-    //     }
-    //   ],
-    //   onChapterExit: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1966-glaciers",
-    //       opacity: 0
-    //     }
-    //   ]
-    // },
-    // {
-    //   id: "oldsun-1966-1998",
-    //   title: "Old Sun Glacier area: 1966 - 1998",
-    //   description: "lorem ipsum",
-    //   location: {
-    //     center: [-113.8116, 48.8921],
-    //     zoom: 11,
-    //     pitch: 0,
-    //     bearing: 0,
-    //     speed: 0.7
-    //   },
-    //   onChapterEnter: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "1966-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "glacier-labels",
-    //       opacity: 1.0
-    //     },
-    //     {
-    //       layer: "1998-glaciers",
-    //       opacity: 1.0
-    //     }
-    //   ],
-    //   onChapterExit: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1966-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1998-glaciers",
-    //       opacity: 0
-    //     }
-    //   ]
-    // },
-    // {
-    //   id: "oldsun-1998-2005",
-    //   title: "Old Sun Glacier area: 1998 - 2005",
-    //   description: "lorem ipsum",
-    //   location: {
-    //     center: [-113.8116, 48.8921],
-    //     zoom: 11,
-    //     pitch: 0,
-    //     bearing: 0,
-    //     speed: 0.7
-    //   },
-    //   onChapterEnter: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "1966-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "1998-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "glacier-labels",
-    //       opacity: 1.0
-    //     },
-    //     {
-    //       layer: "2005-glaciers",
-    //       opacity: 1.0
-    //     }
-    //   ],
-    //   onChapterExit: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1966-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1998-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "2005-glaciers",
-    //       opacity: 0
-    //     }
-    //   ]
-    // },
-    // {
-    //   id: "oldsun-2005-2015",
-    //   title: "Old Sun Glacier area: 2005 - 2015",
-    //   description: "lorem ipsum",
-    //   location: {
-    //     center: [-113.8116, 48.8921],
-    //     zoom: 11,
-    //     pitch: 0,
-    //     bearing: 0,
-    //     speed: 0.7
-    //   },
-    //   onChapterEnter: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "1966-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "1998-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "2005-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "2015-glaciers",
-    //       opacity: 1
-    //     }
-    //   ],
-    //   onChapterExit: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1966-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1998-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "2005-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "2015-glaciers",
-    //       opacity: 0
-    //     }
-    //   ]
-    // },
     {
       id: "grinnell-1850",
       title: "1850",
@@ -1100,6 +832,10 @@ var config = {
           opacity: 0
         },
         {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
           layer: "1966-glaciers",
           opacity: 0
         }
@@ -1141,6 +877,10 @@ var config = {
         },
         {
           layer: "1966-glaciers-gone",
+          opacity: 0
+        },
+        {
+          layer: "glacier-labels",
           opacity: 0
         },
         {
@@ -1196,6 +936,10 @@ var config = {
           opacity: 0
         },
         {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
           layer: "2005-glaciers",
           opacity: 0
         }
@@ -1231,6 +975,10 @@ var config = {
           opacity: 0.5
         },
         {
+          layer: "glacier-labels",
+          opacity: 1.0
+        },
+        {
           layer: "2015-glaciers",
           opacity: 1
         }
@@ -1253,55 +1001,15 @@ var config = {
           opacity: 0
         },
         {
+          layer: "glacier-labels",
+          opacity: 0
+        },
+        {
           layer: "2015-glaciers",
           opacity: 0
         }
       ]
     },
-    // {
-    //   id: "all-1850-2015",
-    //   title: "Glacier recession, 1850 - 2015",
-    //   description: "1850",
-    //   location: {
-    //     center: [-114.0944, 48.6343],
-    //     zoom: 8.47,
-    //     pitch: 0.0,
-    //     bearing: 0.0,
-    //     speed: 0.7
-    //   },
-    //   onChapterEnter: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0.5
-    //     },
-    //     {
-    //       layer: "2015-glaciers",
-    //       opacity: 1
-    //     }
-    //   ],
-    //   onChapterExit: [
-    //     {
-    //       layer: "1850-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1966-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "1998-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "2005-glaciers-gone",
-    //       opacity: 0
-    //     },
-    //     {
-    //       layer: "2015-glaciers",
-    //       opacity: 0
-    //     }
-    //   ]
-    // },
     {
       id: "olympic-reset",
       title: "Glaciers in Olympic National Park",
@@ -1317,11 +1025,7 @@ var config = {
         {
           layer: "1998-glaciers",
           opacity: 1
-        },
-        {
-          layer: "glacier-labels",
-          opacity: 0
-        },
+        }
       ],
       onChapterExit: [
         {
@@ -1353,6 +1057,10 @@ var config = {
       ],
       onChapterExit: [
         {
+          layer: "1998-glaciers",
+          opacity: 0
+        },
+        {
           layer: "glacier-labels",
           opacity: 0
         }
@@ -1371,10 +1079,6 @@ var config = {
       },
       onChapterEnter: [
         {
-          layer: "1998-glaciers",
-          opacity: 0
-        },
-        {
           layer: "1998-glaciers-gone",
           opacity: 0.5
         },
@@ -1389,11 +1093,11 @@ var config = {
       ],
       onChapterExit: [
         {
-          layer: "2015-glaciers",
+          layer: "1998-glaciers-gone",
           opacity: 0
         },
         {
-          layer: "1998-glaciers",
+          layer: "2015-glaciers",
           opacity: 0
         },
         {
