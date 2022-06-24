@@ -13,6 +13,12 @@
       rel="stylesheet"
     />
     <style>
+      .mapboxgl-popup {
+      max-width: 400px;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      }
+      </style>
+    <style>
       @font-face {
         font-family: NationalPark-Regular;
         src: url(../fonts/NationalPark-Regular.otf);
@@ -467,6 +473,33 @@
             "line-width": 0.3
           }
         });
+
+        // const popup = new mapboxgl.Popup({
+        //   closeButton: false,
+        //   closeOnClick: false
+        //   });
+
+        // map.on('mouseenter', 'data', (e) => {
+        // map.getCanvas().style.cursor = 'pointer';
+
+ 
+        // // Ensure that if the map is zoomed out such that multiple
+        // // copies of the feature are visible, the popup appears
+        // // over the copy being pointed to.
+        // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        // }
+        
+        // // Populate the popup and set its coordinates
+        // // based on the feature found.
+        // popup.setLngLat(coordinates).setHTML(description).addTo(map);
+        // });
+        
+        // map.on('mouseleave', 'data', () => {
+        // map.getCanvas().style.cursor = '';
+        // popup.remove();
+        // });
+
 
         var toggleableLayerIds = [
           "Glacier extents",
